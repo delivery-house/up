@@ -1,775 +1,129 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacote Dominância Digital para Deliverys</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes steam {
-            0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            50% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(-50px) scale(1.2); }
-        }
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        .steam {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: steam 3s ease-out infinite;
-        }
-        .countdown-flashing {
-            animation: pulse 1s infinite;
-        }
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: translateY(-5px);
-        }
-        .before-after {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-        .before-after img {
-            width: 100%;
-            display: block;
-        }
-        .before-after .after {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .before-after .slider {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: #FF3A2D;
-            cursor: ew-resize;
-            z-index: 10;
-        }
-        .before-after .slider:before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background: #FF3A2D;
-            border-radius: 50%;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 font-sans">
-    <!-- Header with Countdown -->
-    <header class="bg-red-600 text-white py-3 px-4 text-center">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="text-lg font-bold mb-2 md:mb-0">
-                <i class="fas fa-bolt mr-2"></i> OFERTA RELÂMPAGO
-            </div>
-            <div class="flex items-center">
-                <span class="mr-2">Esta oferta expira em:</span>
-                <div id="countdown" class="bg-black px-3 py-1 rounded-md font-mono text-xl font-bold countdown-flashing">
-                    03:00
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- Resultados Reais Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-red-600 mb-12">
+            <span class="border-b-4 border-yellow-400 pb-2">RESULTADOS REAIS</span><br>
+            <span class="text-2xl text-gray-600 mt-2 block">Veja a transformação de quem aplicou o método</span>
+        </h2>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-yellow-50 to-red-50 py-12 px-4">
-        <div class="container mx-auto flex flex-col lg:flex-row items-center">
-            <div class="lg:w-1/2 mb-10 lg:mb-0">
-                <h1 class="text-3xl md:text-5xl font-bold text-red-600 mb-4">
-                    ⚠️ ALERTA: Seu Delivery Está Perdendo R$3.287/mês?
-                </h1>
-                <h2 class="text-xl md:text-2xl text-gray-800 mb-6">
-                    (Veja Como Mudar Isso em 2 Minutos!) <span class="text-yellow-600">🍔💸</span>
-                </h2>
-                
-                <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
-                    <p class="text-gray-800 mb-4">
-                        Você já tem <span class="font-bold">Treinamento Delivery do Zero</span>... mas isso não adianta se SEUS CLIENTES não encontram seu hambúrguer! Com este Pacote Dominância Digital, você vai:
-                    </p>
-                    
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <span class="bg-green-500 text-white rounded-full p-1 mr-3">
-                                <i class="fas fa-check text-xs"></i>
-                            </span>
-                            <span class="text-gray-800">
-                                <span class="font-bold">Facebook para Deliverys Vencedores</span> → Apareça para 10x mais pessoas sem gastar com anúncios
-                            </span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="bg-green-500 text-white rounded-full p-1 mr-3">
-                                <i class="fas fa-check text-xs"></i>
-                            </span>
-                            <span class="text-gray-800">
-                                <span class="font-bold">Marketing com Messenger</span> → Autorespostas que convertem 83% dos contatos em pedidos
-                            </span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="bg-green-500 text-white rounded-full p-1 mr-3">
-                                <i class="fas fa-check text-xs"></i>
-                            </span>
-                            <span class="text-gray-800">
-                                <span class="font-bold">Tráfego Grátis no Google</span> → Posicione seu delivery no TOPO quando pesquisarem "hambúrguer perto de mim"
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+        <!-- Case 1 -->
+        <div class="flex flex-col md:flex-row gap-8 mb-16 items-center">
+            <div class="md:w-1/2">
+                <div class="relative overflow-hidden rounded-xl shadow-lg border-4 border-gray-200">
+                    <div class="before-after">
+                        <!-- Imagem ANTES -->
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Antes - Perfil sem organização" class="w-full">
+                        
+                        <!-- Imagem DEPOIS -->
+                        <div class="after">
+                            <img src="https://images.unsplash.com/photo-1559841644-0896a9b21a1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                                 alt="Depois - Perfil profissional" class="w-full">
                         </div>
-                        <div class="ml-3">
-                            <p class="text-sm text-yellow-800">
-                                <span class="font-bold">ÚLTIMAS 12 UNIDADES DISPONÍVEIS</span> - Esta página se autodestrói em: <span id="countdown2" class="font-bold">03:00</span>
-                            </p>
-                        </div>
+                        <div class="slider"></div>
                     </div>
-                </div>
-                
-                <div class="bg-red-100 border-l-4 border-red-500 p-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-lock text-red-600"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm text-red-800">
-                                <span class="font-bold">OFERTA BLOQUEADA</span> - Disponível APENAS para clientes do <span class="font-bold">Treinamento Delivery do Zero</span>
-                            </p>
-                        </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <p class="text-white text-sm font-bold">Arraste para ver a transformação →</p>
                     </div>
                 </div>
             </div>
             
-            <div class="lg:w-1/2 relative">
-                <!-- 3D Burger with Steam Effect -->
-                <div class="relative float-animation" style="max-width: 500px; margin: 0 auto;">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg" alt="Hambúrguer Delicioso" class="w-full rounded-lg shadow-xl">
+            <div class="md:w-1/2">
+                <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">De R$2.300 para R$8.700/mês</h3>
+                    <p class="text-gray-600 mb-4">"Antes eu mal conseguia 10 pedidos por dia. Depois de aplicar as estratégias de posicionamento, meu delivery explodiu!"</p>
                     
-                    <!-- Steam elements -->
-                    <div class="steam" style="width: 30px; height: 30px; left: 30%; top: -20px;"></div>
-                    <div class="steam" style="width: 40px; height: 40px; left: 45%; top: -30px; animation-delay: 0.5s;"></div>
-                    <div class="steam" style="width: 25px; height: 25px; left: 60%; top: -15px; animation-delay: 1s;"></div>
-                </div>
-                
-                <!-- Offer Box -->
-                <div class="bg-white rounded-lg shadow-xl p-6 mt-8 border-4 border-green-500 transform -rotate-2">
-                    <div class="text-center mb-4">
-                        <span class="bg-red-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded">OFERTA EXCLUSIVA</span>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-lg shadow-sm">
+                            <p class="text-red-500 font-bold text-xl">+278%</p>
+                            <p class="text-gray-600 text-sm">Aumento no faturamento</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg shadow-sm">
+                            <p class="text-red-500 font-bold text-xl">4.7★</p>
+                            <p class="text-gray-600 text-sm">Avaliação no Google</p>
+                        </div>
                     </div>
                     
-                    <div class="text-center mb-4">
-                        <span class="text-gray-500 line-through text-xl">De R$497</span>
-                        <span class="block text-4xl font-bold text-red-600">R$67</span>
-                        <span class="text-green-600 font-bold">ou 3x de R$22,33</span>
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full border-2 border-yellow-400 mr-3">
+                        <div>
+                            <p class="font-bold">Mariana Silva</p>
+                            <p class="text-gray-600 text-sm">Burguer da Praia - Fortaleza/CE</p>
+                        </div>
                     </div>
-                    
-                    <p class="text-center text-gray-600 mb-4">
-                        (menos que 1 delivery por dia)
-                    </p>
-                    
-                    <div class="text-center mb-4">
-                        <span class="bg-yellow-200 text-yellow-800 text-sm font-medium px-3 py-1 rounded">
-                            Você economiza 86%
-                        </span>
-                    </div>
-                    
-                    <div class="bg-green-50 p-4 rounded-lg mb-4">
-                        <p class="text-green-800 text-center font-bold">
-                            + BÔNUS: "Como Posicionar Seu Delivery na Internet" (PDF)
-                        </p>
-                    </div>
-                    
-                    <button id="ctaButton" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-4 rounded-lg pulse-animation transition duration-300 flex items-center justify-center">
-                        <span class="mr-2">👉 SIM! QUERO LOTAR MEU DELIVERY DE PEDIDOS! 👈</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                    
-                    <button class="w-full mt-3 text-gray-500 font-medium py-2 px-4 rounded-lg border border-gray-300 hover:bg-gray-100 transition duration-300">
-                        Não, prefiro continuar com meu delivery invisível...
-                    </button>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Testimonial Section -->
-    <section class="py-12 px-4 bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center text-red-600 mb-12">
-                👇 Veja o que nossos clientes estão falando 👇
-            </h2>
+        <!-- Case 2 -->
+        <div class="flex flex-col md:flex-row-reverse gap-8 mb-16 items-center">
+            <div class="md:w-1/2">
+                <div class="relative overflow-hidden rounded-xl shadow-lg border-4 border-gray-200">
+                    <div class="before-after">
+                        <!-- Imagem ANTES -->
+                        <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                             alt="Antes - WhatsApp vazio" class="w-full">
+                        
+                        <!-- Imagem DEPOIS -->
+                        <div class="after">
+                            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                                 alt="Depois - WhatsApp cheio" class="w-full">
+                        </div>
+                        <div class="slider"></div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                        <p class="text-white text-sm font-bold">Arraste para ver a transformação →</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Video Testimonial 1 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="relative pb-[56.25%] bg-black">
-                        <!-- Video Placeholder -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <i class="fas fa-play-circle text-red-600 text-6xl mb-2"></i>
-                                <p class="text-white font-bold">Depoimento em vídeo (15s)</p>
-                            </div>
+            <div class="md:w-1/2">
+                <div class="bg-yellow-50 p-6 rounded-lg border-l-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">WhatsApp de 3 para 28 pedidos/dia</h3>
+                    <p class="text-gray-600 mb-4">"Depois que implementei o método de atendimento automático, meu telefone não para de tocar!"</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-3 rounded-lg shadow-sm">
+                            <p class="text-red-500 font-bold text-xl">+833%</p>
+                            <p class="text-gray-600 text-sm">Mais pedidos</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg shadow-sm">
+                            <p class="text-red-500 font-bold text-xl">-65%</p>
+                            <p class="text-gray-600 text-sm">Menos tempo atendendo</p>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-800 italic mb-4">
-                            "Aumentei de 7 para 43 pedidos/dia usando essas estratégias! Nunca imaginei que poderia crescer tanto em tão pouco tempo."
-                        </p>
-                        <div class="flex items-center">
-                            <div class="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-800">Carla, Burguer da Praia</p>
-                                <p class="text-gray-600 text-sm">São Paulo - SP</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Video Testimonial 2 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="relative pb-[56.25%] bg-black">
-                        <!-- Video Placeholder -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <i class="fas fa-play-circle text-red-600 text-6xl mb-2"></i>
-                                <p class="text-white font-bold">Depoimento em vídeo (20s)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-800 italic mb-4">
-                            "O Marketing com Messenger revolucionou meu negócio! Agora 70% dos meus pedidos vêm pelo Facebook."
-                        </p>
-                        <div class="flex items-center">
-                            <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-800">Roberto, King Burger</p>
-                                <p class="text-gray-600 text-sm">Rio de Janeiro - RJ</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Video Testimonial 3 -->
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <div class="relative pb-[56.25%] bg-black">
-                        <!-- Video Placeholder -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center">
-                                <i class="fas fa-play-circle text-red-600 text-6xl mb-2"></i>
-                                <p class="text-white font-bold">Depoimento em vídeo (25s)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-800 italic mb-4">
-                            "Em 30 dias meu faturamento subiu de R$4.000 para R$12.000! O Google Maps foi o que mais me trouxe clientes novos."
-                        </p>
-                        <div class="flex items-center">
-                            <div class="bg-green-600 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="font-bold text-gray-800">Fernanda, Burgers & Cia</p>
-                                <p class="text-gray-600 text-sm">Belo Horizonte - MG</p>
-                            </div>
+                    
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Cliente" class="w-12 h-12 rounded-full border-2 border-yellow-400 mr-3">
+                        <div>
+                            <p class="font-bold">Carlos Oliveira</p>
+                            <p class="text-gray-600 text-sm">King Burguer - Belo Horizonte/MG</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Guarantee Section -->
-    <section class="py-12 px-4 bg-gradient-to-r from-green-500 to-green-600 text-white">
-        <div class="container mx-auto text-center">
-            <div class="max-w-3xl mx-auto">
-                <div class="bg-white text-green-600 inline-block p-3 rounded-full mb-6">
-                    <i class="fas fa-shield-alt text-3xl"></i>
+        <!-- Botão CTA -->
+        <div class="text-center">
+            <a onclick="return false;" href="https://pay.hotmart.com/L100364904U?checkoutMode=2" 
+               class="hotmart-fb hotmart__button-checkout inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-5 px-12 rounded-full text-xl pulse-animation transition-all transform hover:scale-105">
+               <img src='https://static.hotmart.com/img/btn-buy-green.png' alt="QUERO ESSES RESULTADOS" class="h-12">
+            </a>
+            
+            <div class="mt-6 flex justify-center items-center space-x-4">
+                <img src="https://www.freepnglogos.com/uploads/visa-and-mastercard-logo-26.png" alt="Cartões" class="h-8">
+                <div class="flex items-center text-gray-600">
+                    <i class="fas fa-lock text-green-500 mr-2"></i>
+                    <span>Compra 100% Segura</span>
                 </div>
-                <h2 class="text-3xl font-bold mb-6">
-                    Teste por 7 DIAS com Garantia Incondicional!
-                </h2>
-                <p class="text-xl mb-8">
-                    Se você não dobrar seus pedidos usando nossas estratégias, devolvemos <span class="font-bold">100% do valor</span> do seu investimento!
-                </p>
-                <p class="text-lg">
-                    <i class="fas fa-lock mr-2"></i> Sem risco. Sem burocracia. Apenas resultados.
+            </div>
+            
+            <div class="mt-6 bg-green-100 border-l-4 border-green-500 p-4 max-w-md mx-auto rounded-lg">
+                <p class="text-green-800 font-bold flex items-center justify-center">
+                    <i class="fas fa-shield-alt mr-2"></i> Garantia de 7 Dias - Devolução Total
                 </p>
             </div>
         </div>
-    </section>
-
-    <!-- Before/After Section -->
-    <section class="py-12 px-4 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center text-red-600 mb-12">
-                Resultados Reais de Quem Usou
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div class="before-after">
-                    <img src="https://images.unsplash.com/photo-1559844484-e9bdf673e700?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Antes">
-                    <div class="after">
-                        <img src="https://images.unsplash.com/photo-1559844484-7f430240fea8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Depois">
-                    </div>
-                    <div class="slider"></div>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">
-                        De 12 para 58 pedidos por dia em apenas 3 semanas
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        Veja como o perfil do Burgers & Cia mudou completamente depois de aplicar as estratégias de Facebook e Google deste pacote.
-                    </p>
-                    <ul class="space-y-2 mb-4">
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Alcance aumentou 7x</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Taxa de conversão de 3% para 11%</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                            <span>Primeiro lugar no Google para "hambúrguer delivery"</span>
-                        </li>
-                    </ul>
-                    <p class="text-gray-600 italic">
-                        "Nunca imaginei que poderia aparecer tanto sem gastar com anúncios. Esse pacote mudou meu negócio!" - Ricardo, Burgers & Cia
-                    </p>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <button id="ctaButton2" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg pulse-animation transition duration-300 inline-flex items-center">
-                    <span class="mr-2">👉 QUERO ESSES RESULTADOS! 👈</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section class="py-12 px-4 bg-gray-100">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center text-red-600 mb-12">
-                Dominando as Redes Sociais
-            </h2>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-blue-600 text-4xl mb-3">
-                        <i class="fab fa-facebook social-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Facebook</h3>
-                    <p class="text-gray-600">
-                        Estratégias para aparecer para 10x mais pessoas sem gastar com anúncios
-                    </p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-blue-400 text-4xl mb-3">
-                        <i class="fab fa-facebook-messenger social-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Messenger</h3>
-                    <p class="text-gray-600">
-                        Autorespostas que convertem 83% dos contatos em pedidos reais
-                    </p>
-                </div>
-                
-                <div class="bg-white p-6 rounded-lg shadow-md text-center">
-                    <div class="text-blue-400 text-4xl mb-3">
-                        <i class="fab fa-google social-icon"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Google</h3>
-                    <p class="text-gray-600">
-                        Posicione seu delivery no TOPO quando pesquisarem "hambúrguer perto de mim"
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Calculator Section -->
-    <section class="py-12 px-4 bg-gradient-to-r from-red-600 to-red-700 text-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">
-                Quanto você está deixando de faturar?
-            </h2>
-            
-            <div class="max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-                <div class="p-6">
-                    <div class="mb-4">
-                        <label for="orders" class="block text-gray-700 font-bold mb-2">Pedidos por dia atualmente:</label>
-                        <input type="range" id="orders" min="1" max="50" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between text-gray-700">
-                            <span>1</span>
-                            <span id="ordersValue">10</span>
-                            <span>50+</span>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="ticket" class="block text-gray-700 font-bold mb-2">Ticket médio (R$):</label>
-                        <input type="range" id="ticket" min="20" max="100" value="40" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-                        <div class="flex justify-between text-gray-700">
-                            <span>20</span>
-                            <span id="ticketValue">40</span>
-                            <span>100+</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-100 p-4 rounded-lg mb-4">
-                        <p class="text-gray-700 mb-2">Você está perdendo aproximadamente:</p>
-                        <p id="result" class="text-3xl font-bold text-red-600">R$ 9.600/mês</p>
-                    </div>
-                    
-                    <p class="text-gray-600 text-sm">
-                        *Cálculo baseado em potencial de 3x mais pedidos usando nossas estratégias
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-12 px-4 bg-white">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-3xl font-bold text-center text-red-600 mb-12">
-                Perguntas Frequentes
-            </h2>
-            
-            <div class="space-y-4">
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-300">
-                        <span class="text-lg font-medium text-gray-800">📥 Como recebo o material?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden p-4 bg-white">
-                        <p class="text-gray-600">
-                            O acesso é IMEDIATO após a confirmação do pagamento! Você receberá um email com link para download dos ebooks em PDF + bônus. Acesso vitalício e todas as atualizações futuras são grátis!
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-300">
-                        <span class="text-lg font-medium text-gray-800">📱 Funciona pra quem não sabe nada de marketing digital?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden p-4 bg-white">
-                        <p class="text-gray-600">
-                            SIM! Criamos um método "copiar e colar" extremamente simples. Você receberá scripts prontos para Messenger, modelos de posts para Facebook e passo a passo para aparecer no Google. Mesmo quem nunca fez nada online consegue aplicar em menos de 1 hora.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-300">
-                        <span class="text-lg font-medium text-gray-800">⏳ Por que o preço está tão abaixo do mercado?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden p-4 bg-white">
-                        <p class="text-gray-600">
-                            Esta é uma oferta especial EXCLUSIVA para clientes do Treinamento Delivery do Zero. Amanhã esta oferta volta ao preço normal de R$197. Estamos fazendo esse preço promocional porque queremos que TODOS os donos de delivery tenham acesso a essas estratégias poderosas.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="border border-gray-200 rounded-lg overflow-hidden">
-                    <button class="faq-toggle w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition duration-300">
-                        <span class="text-lg font-medium text-gray-800">💳 Quais formas de pagamento aceitam?</span>
-                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content hidden p-4 bg-white">
-                        <p class="text-gray-600">
-                            Cartão de crédito (até 12x), Pix (pagamento à vista com 5% de desconto) e boleto bancário. O acesso é liberado imediatamente para pagamentos com cartão e Pix.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-12 px-4 bg-gradient-to-b from-yellow-100 to-yellow-200">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-red-600 mb-6">
-                🍔 Não Deixe Seu Delivery Invisível! 🍔
-            </h2>
-            <p class="text-xl text-gray-800 mb-8 max-w-3xl mx-auto">
-                Garanta agora o <span class="font-bold">Pacote Dominância Digital para Deliverys</span> e comece a receber mais pedidos ainda hoje!
-            </p>
-            
-            <div class="max-w-md mx-auto bg-white rounded-lg shadow-xl p-6 mb-8 border-4 border-green-500">
-                <div class="text-center mb-4">
-                    <span class="bg-red-600 text-white text-xs font-semibold px-2.5 py-0.5 rounded">OFERTA RELÂMPAGO</span>
-                </div>
-                
-                <div class="text-center mb-4">
-                    <span class="text-gray-500 line-through text-xl">De R$497</span>
-                    <span class="block text-4xl font-bold text-red-600">R$67</span>
-                    <span class="text-green-600 font-bold">ou 3x de R$22,33</span>
-                </div>
-                
-                <div class="bg-red-100 border-l-4 border-red-500 p-4 mb-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-clock text-red-600"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm text-red-800">
-                                <span class="font-bold">ATENÇÃO:</span> <span id="countdown3">02:30</span> RESTANTES - Depois, OFERTA ENCERRA PARA SEMPRE!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <button id="finalCtaButton" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-4 rounded-lg pulse-animation transition duration-300 flex items-center justify-center">
-                    <span class="mr-2">👉 SIM! QUERO LOTAR MEU DELIVERY DE PEDIDOS! 👈</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-                
-                <div class="mt-4 text-center">
-                    <img src="https://www.freepnglogos.com/uploads/visa-and-mastercard-logo-26.png" alt="Formas de pagamento" class="h-8 mx-auto">
-                </div>
-            </div>
-            
-            <div class="bg-white p-4 rounded-lg shadow-md inline-block">
-                <div class="flex items-center">
-                    <div class="bg-green-500 text-white rounded-full p-2 mr-3">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="text-left">
-                        <p class="text-gray-800 font-bold">Garantia de 7 Dias</p>
-                        <p class="text-gray-600 text-sm">Se não dobrar seus pedidos, devolvemos 100%</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 px-4">
-        <div class="container mx-auto">
-            <div class="text-center mb-6">
-                <img src="https://via.placeholder.com/150x50?text=LOGO" alt="Logo" class="h-10 mx-auto">
-            </div>
-            
-            <div class="text-center mb-6">
-                <p class="text-gray-400">
-                    © 2023 Todos os direitos reservados. Este produto não garante a obtenção de resultados. Qualquer referência ao desempenho de uma estratégia não deve ser interpretada como uma garantia de resultados.
-                </p>
-            </div>
-            
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="text-gray-400 hover:text-white">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-white">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Countdown Timer
-        function updateCountdown() {
-            let time = 180; // 3 minutes in seconds
-            const countdownElements = document.querySelectorAll('#countdown, #countdown2, #countdown3');
-            
-            const countdownInterval = setInterval(() => {
-                const minutes = Math.floor(time / 60);
-                const seconds = time % 60;
-                
-                countdownElements.forEach(el => {
-                    el.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                });
-                
-                if (time <= 0) {
-                    clearInterval(countdownInterval);
-                    countdownElements.forEach(el => {
-                        el.textContent = "00:00";
-                        el.classList.add('text-red-600');
-                    });
-                    
-                    // Show expired message
-                    alert("A oferta expirou! Entre em contato conosco para verificar disponibilidade.");
-                }
-                
-                time--;
-            }, 1000);
-        }
-        
-        // Range Sliders for Calculator
-        function setupCalculator() {
-            const ordersSlider = document.getElementById('orders');
-            const ordersValue = document.getElementById('ordersValue');
-            const ticketSlider = document.getElementById('ticket');
-            const ticketValue = document.getElementById('ticketValue');
-            const resultElement = document.getElementById('result');
-            
-            ordersSlider.addEventListener('input', updateCalculator);
-            ticketSlider.addEventListener('input', updateCalculator);
-            
-            function updateCalculator() {
-                const orders = parseInt(ordersSlider.value);
-                const ticket = parseInt(ticketSlider.value);
-                
-                ordersValue.textContent = orders;
-                ticketValue.textContent = ticket;
-                
-                // Simple calculation: potential to triple orders
-                const potentialLoss = (orders * 2) * ticket * 30; // 2x more orders * ticket * 30 days
-                
-                resultElement.textContent = `R$ ${potentialLoss.toLocaleString('pt-BR')}/mês`;
-            }
-            
-            updateCalculator();
-        }
-        
-        // Before/After Slider
-        function setupBeforeAfterSlider() {
-            const container = document.querySelector('.before-after');
-            if (!container) return;
-            
-            const slider = container.querySelector('.slider');
-            const after = container.querySelector('.after');
-            
-            let isDragging = false;
-            
-            slider.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                e.preventDefault();
-            });
-            
-            document.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-                
-                const containerRect = container.getBoundingClientRect();
-                let x = e.clientX - containerRect.left;
-                
-                // Keep within bounds
-                x = Math.max(0, Math.min(x, containerRect.width));
-                
-                const percent = (x / containerRect.width) * 100;
-                
-                after.style.width = `${100 - percent}%`;
-                slider.style.left = `${percent}%`;
-            });
-            
-            document.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-            
-            // Touch support
-            slider.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                e.preventDefault();
-            });
-            
-            document.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                
-                const containerRect = container.getBoundingClientRect();
-                let x = e.touches[0].clientX - containerRect.left;
-                
-                // Keep within bounds
-                x = Math.max(0, Math.min(x, containerRect.width));
-                
-                const percent = (x / containerRect.width) * 100;
-                
-                after.style.width = `${100 - percent}%`;
-                slider.style.left = `${percent}%`;
-            });
-            
-            document.addEventListener('touchend', () => {
-                isDragging = false;
-            });
-        }
-        
-        // FAQ Toggles
-        function setupFAQ() {
-            const toggles = document.querySelectorAll('.faq-toggle');
-            
-            toggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const content = toggle.nextElementSibling;
-                    const icon = toggle.querySelector('i');
-                    
-                    content.classList.toggle('hidden');
-                    icon.classList.toggle('rotate-180');
-                });
-            });
-        }
-        
-        // CTA Button Animation
-        function animateCTAButtons() {
-            const buttons = document.querySelectorAll('#ctaButton, #ctaButton2, #finalCtaButton');
-            
-            buttons.forEach(button => {
-                button.addEventListener('mouseenter', () => {
-                    button.classList.add('animate-bounce');
-                });
-                
-                button.addEventListener('mouseleave', () => {
-                    button.classList.remove('animate-bounce');
-                });
-                
-                button.addEventListener('click', () => {
-                    // Simulate checkout process
-                    alert("Ótima escolha! Você será redirecionado para a página de pagamento seguro...");
-                });
-            });
-        }
-        
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCountdown();
-            setupCalculator();
-            setupBeforeAfterSlider();
-            setupFAQ();
-            animateCTAButtons();
-        });
-    </script>
-</body>
-</html>
+    </div>
+</section>
